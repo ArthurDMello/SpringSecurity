@@ -24,16 +24,18 @@ public class Users implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long id;
-    public String name;
 
-    @Column(nullable = false)
     public String login ;
 
-    @Column(nullable = false)
     public String password;
 
-    @Column(nullable = false)
     public UsersRole role;
+
+    public Users(String login, String password, UsersRole role) {
+        this.login = login;
+        this.password = password;
+        this.role = role;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -43,7 +45,7 @@ public class Users implements UserDetails {
 
     @Override
     public String getUsername() {
-        return name;
+        return login;
     }
 
     @Override
